@@ -20,7 +20,7 @@ deploymentStrategy: {}
 
 ## Is this deployment for OpenShift? If so, we help with SCCs
 OpenShift:
-  enabled: false
+  enabled: true
   createSCC: true
 
 edition: "community"
@@ -81,10 +81,10 @@ nginx:
   enabled: false
 
 ingress:
-  enabled: false
+  enabled: true
   # Used to create an Ingress record.
   hosts:
-    - name: sonarqube.your-org.com
+    - name: sonarqube.apps.devcampocp.hur.hdclab.intranet.ibm.com
       # Different clouds or configurations might need /* as the default path
       # path: /
       # For additional control over serviceName and servicePort
@@ -463,16 +463,16 @@ postgresql:
   volumePermissions:
     # For standard Kubernetes deployment, set enabled=false
     # For OpenShift, set enabled=true and ensure to set volumepermissions.securitycontext.runAsUser below.
-    enabled: false
+    enabled: true
     # if using restricted SCC set runAsUser: "auto" and if running under anyuid/nonroot SCC - runAsUser needs to match runAsUser above
     securityContext:
-      runAsUser: 0
+      runAsUser: 1001
   shmVolume:
     chmod:
       enabled: false
   serviceAccount:
     ## If enabled = true, and name is not set, postgreSQL will create a serviceAccount
-    enabled: false
+    enabled: true
     # name:
 
 # Additional labels to add to the pods:
@@ -490,8 +490,8 @@ tests:
 
 # For OpenShift set create=true to ensure service account is created.
 serviceAccount:
-  create: false
-  # name:
+  create: true
+  # name: blah 
   # automountToken: false # default
   ## Annotations for the Service Account
   annotations: {}
